@@ -1,10 +1,11 @@
 class TicTacToe
+  attr_accessor :board
 
-  def board
-    ['','','','','','','','','']
+  def initialize
+    @board = ['','','','','','','','','']
   end
 
-  def place(position:, player:)
-    ['x','','','','','','','','']
+  def place(position, player)
+    board[position] = player
   end
 end
