@@ -28,7 +28,6 @@ RSpec.describe do
         end
 
         it 'accepts valid player pieces' do
-
           expect(current_game.place(8, 'o')).to_not eq('invalid piece')
         end
 
@@ -96,6 +95,14 @@ RSpec.describe do
 
             expect(current_game.place(8, 'x')).to_not eq("Player x has won")
           end
+        end
+      end
+
+      context 'when playing against the computer' do
+        it 'places a piece in response to a user placing a piece' do
+          current_game.place(3, 'x')
+
+          expect(current_game.board).to include('o')
         end
       end
     end
