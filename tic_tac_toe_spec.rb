@@ -29,10 +29,6 @@ RSpec.describe do
 
         expect(current_game.board).to eq(game_board)
       end
-    end
-
-    context 'when playing the game' do
-      
 
       it 'a player can place multiple pieces on the board' do
         game_board = ['x','','x','','x','','','','']
