@@ -47,6 +47,29 @@ RSpec.describe do
 
           expect(current_game.place(6, 'x')).to eq("Player x has won")
         end
+
+        it 'recognises a win' do
+          current_game.place(0, 'x')
+          current_game.place(1, 'x')
+
+          expect(current_game.place(2, 'x')).to eq("Player x has won")
+        end
+
+        it 'recognises a win' do
+          current_game.place(0, 'x')
+          current_game.place(4, 'x')
+
+          expect(current_game.place(8, 'x')).to eq("Player x has won")
+        end
+      end
+
+      context 'and a player has not won' do
+        it 'recognises a player has not won' do
+          current_game.place(0, 'x')
+          current_game.place(3, 'x')
+
+          expect(current_game.place(8, 'x')).to_not eq("Player x has won")
+        end
       end
     end
   end
