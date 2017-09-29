@@ -15,12 +15,29 @@ RSpec.describe do
     context 'when playing the game' do
       let(:current_game) { TicTacToe.new }
 
-      it 'a player cannot place a piece off the board' do
-        game_board = ['x','','','','','','','','']
+      context 'with invalid positions' do
+        it 'a player cannot place a piece off the board' do
+          game_board = ['x','','','','','','','','']
+          
+          expect(current_game.place(9,'x')).to eq('invalid position')
+        end
 
-        
-        
-        expect(current_game.place(9,'x')).to eq('please place a piece ON THE BOARD idiot'
+        it 'a player can only place valid pieces' do
+
+          expect(current_game.place(8, '$')).to eq('invalid piece')
+        end
+
+        it 'accepts valid player pieces' do
+
+          expect(current_game.place(8, 'o')).to_not eq('invalid piece')
+        end
+
+        it 'cannot place a piece on the same spot twice' do
+          game_board = ['x','','','','','','','','']
+          current_game.place(0,'x')
+
+          expect(current_game.place(0, 'o')).to eq('invalid position')
+        end
       end
 
       it 'a player can place a piece on the board' do

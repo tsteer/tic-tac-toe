@@ -6,6 +6,8 @@ class TicTacToe
   end
 
   def place(position, player)
+    return 'invalid position' unless position_on_board_valid?(position)
+    return 'invalid piece' unless confirm_valid_piece?(player)
     board[position] = player
 
     check_win_condition
@@ -29,5 +31,16 @@ class TicTacToe
     elsif board == ['','','','','','','x','x','x']
       "Player x has won"
     end
+  end
+
+  def position_on_board_valid?(position)
+    return true if (position > -1) && (position < 9) && (board[position] == '')
+
+    false
+  end
+
+  def confirm_valid_piece?(player)
+    return true if player == 'x' || player == 'o'
+    false
   end
 end
