@@ -15,6 +15,14 @@ RSpec.describe do
     context 'when playing the game' do
       let(:current_game) { TicTacToe.new }
 
+      it 'a player cannot place a piece off the board' do
+        game_board = ['x','','','','','','','','']
+
+        
+        
+        expect(current_game.place(9,'x')).to eq('please place a piece ON THE BOARD idiot'
+      end
+
       it 'a player can place a piece on the board' do
         game_board = ['x','','','','','','','','']
 
