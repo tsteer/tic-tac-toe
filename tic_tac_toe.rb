@@ -9,8 +9,6 @@ class TicTacToe
     return 'invalid position' unless position_on_board_valid?(position)
     return 'invalid piece' unless confirm_valid_piece?(player)
     board[position] = player
-    valid_number = computer_player_place_piece
-    board[position] = 'o'
 
     check_win_condition
   end
@@ -22,24 +20,22 @@ class TicTacToe
   end
 
   def check_win_condition
-    rc = //
-    
-    if board == ['x','','','x','','','x','','']
-      "Player x has won"
-    elsif board == ['','x','','','x','','','x','']
-      "Player x has won"
-    elsif board == ['','','x','','','x','','','x']
-    "Player x has won"
-    elsif board == ['x','x','x','','','','','','']
-      "Player x has won"
-    elsif board == ['','','','x','x','x','','','']
-      "Player x has won"
-    elsif board == ['x','','','','x','','','','x']
-      "Player x has won"
-    elsif board == ['','','x','','x','','x','','']
-      "Player x has won"
-    elsif board == ['','','','','','','x','x','x']
-      "Player x has won"
+    if board[0] == 'x' && board[4] == 'x' && board[8] == 'x' 
+      return "Player x has won"
+    elsif board[2] == 'x' && board[4] == 'x' && board[6] == 'x'
+      return "Player x has won"
+    elsif board[0] == 'x' && board[1] == 'x' && board[2] == 'x'
+      return "Player x has won"
+    elsif board[3] == 'x' && board[4] == 'x' && board[5] == 'x'
+      return "Player x has won"
+    elsif board[6] == 'x' && board[7] == 'x' && board[8] == 'x'
+      return "Player x has won"
+    elsif board[0] == 'x' && board[3] == 'x' && board[6] == 'x'
+      return "Player x has won"
+    elsif board[1] == 'x' && board[4] == 'x' && board[7] == 'x'
+      return "Player x has won"
+    elsif board[2] == 'x' && board[5] == 'x' && board[8] == 'x'
+      return "Player x has won"
     end
   end
 

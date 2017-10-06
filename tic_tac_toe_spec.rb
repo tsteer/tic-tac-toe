@@ -1,5 +1,5 @@
 require_relative 'tic_tac_toe'
-
+require 'pry'
 RSpec.describe do
   context 'playing tic tac toe' do
     let(:current_game) { TicTacToe.new }
@@ -23,7 +23,6 @@ RSpec.describe do
         end
 
         it 'a player can only place valid pieces' do
-
           expect(current_game.place(8, '$')).to eq('invalid piece')
         end
 
@@ -83,7 +82,7 @@ RSpec.describe do
           it 'recognises a win' do
             current_game.place(0, 'x')
             current_game.place(4, 'x')
-
+  
             expect(current_game.place(8, 'x')).to eq("Player x has won")
           end
         end
@@ -95,14 +94,6 @@ RSpec.describe do
 
             expect(current_game.place(8, 'x')).to_not eq("Player x has won")
           end
-        end
-      end
-
-      context 'when playing against the computer' do
-        it 'places a piece in response to a user placing a piece' do
-          current_game.place(3, 'x')
-
-          expect(current_game.board).to include('o')
         end
       end
     end
