@@ -6,7 +6,7 @@ RSpec.describe do
 
     context 'when starting a new game' do
       it 'has an empty board' do
-        game_board = ['','','','','','','','','']
+        game_board = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
 
         expect(TicTacToe.new.board).to eq(game_board)
       end
@@ -17,7 +17,7 @@ RSpec.describe do
 
       context 'with invalid positions' do
         it 'a player cannot place a piece off the board' do
-          game_board = ['x','','','','','','','','']
+          game_board = ['x',' ',' ',' ',' ',' ',' ',' ',' ']
           
           expect(current_game.place(9,'x')).to eq('invalid position')
         end
@@ -31,7 +31,7 @@ RSpec.describe do
         end
 
         it 'cannot place a piece on the same spot twice' do
-          game_board = ['x','','','','','','','','']
+          game_board = ['x',' ',' ',' ',' ',' ',' ',' ',' ']
           current_game.place(0,'x')
 
           expect(current_game.place(0, 'o')).to eq('invalid position')
@@ -40,7 +40,7 @@ RSpec.describe do
 
       context 'with valid positions' do
         it 'a player can place a piece on the board' do
-          game_board = ['x','','','','','','','','']
+          game_board = ['x',' ',' ',' ',' ',' ',' ',' ',' ']
 
           current_game.place(0,'x')
           
@@ -48,14 +48,14 @@ RSpec.describe do
         end
 
         it 'a player can place a piece on the board' do
-          game_board = ['','x','','','','','','','']
+          game_board = [' ','x',' ',' ',' ',' ',' ',' ',' ']
           current_game.place(1,'x')
 
           expect(current_game.board).to eq(game_board)
         end
 
         it 'a player can place multiple pieces on the board' do
-          game_board = ['x','','x','','x','','','','']
+          game_board = ['x',' ','x',' ','x',' ',' ',' ',' ']
         
           current_game.place(0, 'x')
           current_game.place(2, 'x')
@@ -68,22 +68,25 @@ RSpec.describe do
           it 'recognises a win' do
             current_game.place(0, 'x')
             current_game.place(3, 'x')
+            current_game.place(6, 'x')
 
-            expect(current_game.place(6, 'x')).to eq("Player x has won")
+            expect(current_game.check_win_condition_for_x).to eq(true)
           end
 
           it 'recognises a win' do
             current_game.place(0, 'x')
             current_game.place(1, 'x')
+            current_game.place(2, 'x')
 
-            expect(current_game.place(2, 'x')).to eq("Player x has won")
+            expect(current_game.check_win_condition_for_x).to eq(true)
           end
 
           it 'recognises a win' do
             current_game.place(0, 'x')
             current_game.place(4, 'x')
-  
-            expect(current_game.place(8, 'x')).to eq("Player x has won")
+            current_game.place(8, 'x')
+
+            expect(current_game.check_win_condition_for_x).to eq(true)
           end
         end
 
