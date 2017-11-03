@@ -8,9 +8,15 @@ game = TicTacToe.new
 
 loop do
   #player x turn
-  puts "player x place a piece"
-  position = gets.chomp.to_i
-  game.place(position, 'x')
+  piece_placed = false
+
+  until piece_placed do
+    puts "player x place a piece"
+    position = gets.chomp.to_i
+    
+    piece_placed = true if game.place(position, 'x')
+  end
+
   game.output_game_board
 
   if game.check_win_condition_for_x
@@ -19,9 +25,14 @@ loop do
   end
 
   #player o turn
-  puts "player o place a piece"
-  position = gets.chomp.to_i
-  game.place(position, 'o')
+  piece_placed = false
+
+  until piece_placed do
+    puts "player o place a piece"
+    position = gets.chomp.to_i
+    piece_placed = true if game.place(position, 'o')
+  end
+
   game.output_game_board
   
   if game.check_win_condition_for_o
