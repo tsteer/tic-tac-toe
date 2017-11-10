@@ -8,7 +8,7 @@ RSpec.describe AI do
       AI.make_move(game)
 
       ai_placed = game.board.select do |piece|
-        piece == 'x'
+        piece == 'o'
       end
 
       expect(ai_placed.length).to eq(1)
