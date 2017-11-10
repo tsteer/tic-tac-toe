@@ -1,5 +1,6 @@
 class AI
-  def self.place(board)
-    board[5] = 'x'
+  def self.make_move(game)
+    chosen_position = rand(0..8)
+    game.place(chosen_position, 'x')
   end
 end

@@ -4,10 +4,10 @@ require_relative 'ai'
 RSpec.describe AI do
   context 'with an empty game board' do
     it 'places a piece of the board' do
-      board = TicTacToe.new.board
-      AI.place(board)
+      game = TicTacToe.new
+      AI.make_move(game)
 
-      ai_placed = board.select do |piece|
+      ai_placed = game.board.select do |piece|
         piece == 'x'
       end
 
