@@ -1,10 +1,13 @@
 class Score
   def for_board(board, current_player, opponent)
     if has_won?(board, current_player)
+      p 'has won'
       10
     elsif has_won?(board, opponent)
+      p 'opponent would win'
       -10
     else
+      p 'nothing'
       0
     end
   end

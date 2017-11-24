@@ -1,8 +1,10 @@
 class TicTacToe
   attr_accessor :board, :computer_player
 
-  def initialize
-    @board = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
+  EMPTY_BOARD = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
+
+  def initialize(board = EMPTY_BOARD.clone)
+    @board = board
   end
 
   def place(position, player)
@@ -81,5 +83,9 @@ class TicTacToe
     puts "#{board[3]}| #{board[4]}| #{board[5]}"
     puts "--------"
     puts "#{board[6]}| #{board[7]}| #{board[8]}"
+  end
+
+  def get_available_moves
+    (0..8).select { |position| position_available(position) }
   end
 end
