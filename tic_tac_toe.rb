@@ -6,8 +6,9 @@ class TicTacToe
   end
 
   def place(position, player)
-    return 'invalid position' unless position_on_board_valid?(position)
-    return 'invalid piece' unless confirm_valid_piece?(player)
+    return false unless position_on_board_valid?(position)
+    return false unless confirm_valid_piece?(player)
+    return false unless position_available(position)
     board[position] = player
   end
 
@@ -53,6 +54,14 @@ class TicTacToe
     else
       false
     end
+  end
+
+  def check_draw_conditions
+    board.all? { |position| position == 'o' || position == 'x' }
+  end
+
+  def position_available(position)
+    board[position] == ' ' ? true : false
   end
 
   def position_on_board_valid?(position)

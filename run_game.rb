@@ -1,4 +1,5 @@
 require_relative './tic_tac_toe.rb'
+require_relative './ai'
 
 game = TicTacToe.new
 
@@ -8,9 +9,15 @@ game = TicTacToe.new
 
 loop do
   #player x turn
-  puts "player x place a piece"
-  position = gets.chomp.to_i
-  game.place(position, 'x')
+  piece_placed = false
+
+  until piece_placed do
+    puts "player x place a piece"
+    position = gets.chomp.to_i
+    
+    piece_placed = true if game.place(position, 'x')
+  end
+
   game.output_game_board
 
   if game.check_win_condition_for_x
@@ -19,9 +26,12 @@ loop do
   end
 
   #player o turn
-  puts "player o place a piece"
-  position = gets.chomp.to_i
-  game.place(position, 'o')
+  piece_placed = false
+
+  until piece_placed do
+    piece_placed = true if AI.make_move(game)
+  end
+
   game.output_game_board
   
   if game.check_win_condition_for_o

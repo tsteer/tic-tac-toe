@@ -19,11 +19,11 @@ RSpec.describe do
         it 'a player cannot place a piece off the board' do
           game_board = ['x',' ',' ',' ',' ',' ',' ',' ',' ']
           
-          expect(current_game.place(9,'x')).to eq('invalid position')
+          expect(current_game.place(9,'x')).to eq(false)
         end
 
         it 'a player can only place valid pieces' do
-          expect(current_game.place(8, '$')).to eq('invalid piece')
+          expect(current_game.place(8, '$')).to eq(false)
         end
 
         it 'accepts valid player pieces' do
@@ -34,7 +34,7 @@ RSpec.describe do
           game_board = ['x',' ',' ',' ',' ',' ',' ',' ',' ']
           current_game.place(0,'x')
 
-          expect(current_game.place(0, 'o')).to eq('invalid position')
+          expect(current_game.place(0, 'o')).to eq(false)
         end
       end
 
@@ -60,6 +60,15 @@ RSpec.describe do
           current_game.place(0, 'x')
           current_game.place(2, 'x')
           current_game.place(4, 'x')
+
+          expect(current_game.board).to eq(game_board)
+        end
+
+        it 'a player cannot place a piece on another piece' do
+          game_board = ['x',' ',' ',' ',' ',' ',' ',' ',' ']
+
+          current_game.place(0, 'x')
+          current_game.place(0, 'o')
 
           expect(current_game.board).to eq(game_board)
         end
@@ -90,14 +99,20 @@ RSpec.describe do
           end
         end
 
-        context 'and a player has not won' do
-          it 'recognises a player has not won' do
+        context 'and a player has drawn' do
+          it 'shows a draw' do
             current_game.place(0, 'x')
+            current_game.place(2, 'x')
             current_game.place(3, 'x')
-
-            expect(current_game.place(8, 'x')).to_not eq("Player x has won")
+            current_game.place(4, 'x')
+            current_game.place(1, 'o')
+            current_game.place(7, 'o')
+            current_game.place(5, 'o')
+            current_game.place(6, 'o')
+            current_game.place(8, 'o')
+            expect(current_game.check_draw_conditions).to eq(true)
           end
-        end
+        end 
       end
     end
   end
