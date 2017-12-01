@@ -29,7 +29,10 @@ loop do
   piece_placed = false
 
   until piece_placed do
-    piece_placed = true if AI.make_move(game)
+    begin
+      piece_placed = true if AI.make_move(game)
+    rescue
+    end
   end
 
   game.output_game_board

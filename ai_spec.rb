@@ -36,4 +36,15 @@ RSpec.describe AI do
       expect(move).to eq(8)
     end
   end
+
+  context 'when given an empty board' do
+    it 'goes in the corner' do
+      game = TicTacToe.new(
+        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+      )
+
+      move = AI.pick_move(game)
+      expect(move).to eq(0)
+    end
+  end
 end

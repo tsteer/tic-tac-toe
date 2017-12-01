@@ -12,7 +12,7 @@ class Score
     end
   end
 
-private
+# private
 
   def has_won?(board, pl)
     if board[0] == pl && board[4] == pl && board[8] == pl 
